@@ -22,7 +22,9 @@ Article.prototype.toHtml = function() {
   for that before this current article gets rendered to our
   DOM. */
   // one line of code to remove the class that hides the template so that the articles will actually show
-  $('.template').removeClass();
+  // $newArticle.removeClass('.template');
+  // $('.template').removeClass();
+  $newArticle.removeClass('template');
   if (!this.publishedOn) $newArticle.addClass('draft');
   $newArticle.data('category', this.category);
 
@@ -36,6 +38,11 @@ Article.prototype.toHtml = function() {
     5. publication date. */
 
     // lots of $newArticle.find...  (look at jQuery $.find docs)
+    // $newArticle.attr('data-category', this.category);
+    $newArticle.find('h1').html(this.title);
+    $newArticle.find('a').attr('href', this.authorUrl);
+    $newArticle.find('address').html(this.author);
+    $newArticle.find('section').html(this.body);
 
     console.log($newArticle);
 
